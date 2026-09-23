@@ -89,6 +89,7 @@ return {
           },
         },
         gopls = {
+          mason = false, -- use the Homebrew gopls on PATH, not a Mason copy
           gofumpt = true,
           staticcheck = true,
           completeUnimported = true,
