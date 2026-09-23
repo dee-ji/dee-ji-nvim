@@ -115,11 +115,18 @@ recorded on the source machine, run these commands inside Neovim:
 
 ```vim
 :MasonInstall debugpy@1.8.19 delve@v1.26.0 gofumpt@v0.9.2 goimports@v0.40.0
-:MasonInstall golangci-lint@v2.7.2 gopls@v0.21.0 hadolint@v2.14.0
+:MasonInstall hadolint@v2.14.0
 :MasonInstall lua-language-server@3.16.1 markdown-toc@1.2.0 markdownlint-cli2@0.20.0
 :MasonInstall pyright@1.1.407 ruff@0.14.9 shfmt@v3.12.0 sqlfluff@3.5.0
 :MasonInstall stylua@v2.3.1 tree-sitter-cli@v0.26.3
 ```
+
+`gopls` and `golangci-lint` are NOT installed through Mason. They are managed by
+Homebrew (`brew install gopls golangci-lint`) so their build-time Go version
+tracks the current Go toolchain (Go 1.27). `golangci-lint` refuses to lint code
+that targets a Go version newer than the Go it was built with, so a Mason build
+made with an older Go caused exit code 3. The `gopls` server table sets
+`mason = false` to use the Homebrew binary on PATH.
 
 Mason's registry and upstream release availability are external dependencies.
 These versions were extracted from installed Mason receipts, not guessed from
