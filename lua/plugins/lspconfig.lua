@@ -90,29 +90,35 @@ return {
         },
         gopls = {
           mason = false, -- use the Homebrew gopls on PATH, not a Mason copy
-          gofumpt = true,
-          staticcheck = true,
-          completeUnimported = true,
-          usePlaceholders = true,
-          directoryFilters = {
-            "-.git",
-            "-node_modules",
-          },
-          analyses = {
-            unusedparams = true,
-            nilness = true,
-            shadow = true,
-            unusedwrite = true,
-            useany = true,
-          },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
+          -- Actual LSP settings must live under settings.gopls; keys placed at
+          -- the server-table level are ignored and never reach gopls.
+          settings = {
+            gopls = {
+              gofumpt = true,
+              staticcheck = true,
+              completeUnimported = true,
+              usePlaceholders = true,
+              directoryFilters = {
+                "-.git",
+                "-node_modules",
+              },
+              analyses = {
+                unusedparams = true,
+                nilness = true,
+                shadow = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
           },
         },
         -- configuration for all lsp servers
